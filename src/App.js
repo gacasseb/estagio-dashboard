@@ -1,9 +1,16 @@
-import './App.css';
+import "./App.css";
+import SideBar from "./components/SideBar";
+import Map from "./components/Map";
 
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+    <>
+      <SideBar />
+      <div className="p-6 sm:ml-64 h-full">
+        <div className="container mx-auto border h-full">
+          <Map/>
+        </div>
+      </div>
+    </>
+  );
 }
