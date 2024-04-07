@@ -1,7 +1,14 @@
 import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
-import { markers } from "../mock/markers";
 
-const MosqMap = () => {
+// type marker = {
+//   name: string;
+//   position: {
+//     lat: number;
+//     lng: number;
+//   }
+// }
+
+const MosqMap = ({ draggable, onDrag, markers }) => {
   return (
     <>
       <APIProvider apiKey="AIzaSyCln3IuGBs0Z6zmbGIM0nttcS1cZcTzHqE">
@@ -39,9 +46,9 @@ const MosqMap = () => {
                 onDragEnd={(e) => {
                   const lat = e.latLng.lat();
                   const lng = e.latLng.lng();
-                  console.log(marker.name, lat, lng)
+                  return typeof onDrag === 'function' ? onDrag(lat, lng) : null;
                 }}
-                draggable={true}
+                draggable={draggable ? true : false}
               ></Marker>
             );
           })}
