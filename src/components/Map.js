@@ -8,7 +8,7 @@ import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
 //   }
 // }
 
-const MosqMap = ({ draggable, onDrag, markers }) => {
+const MosqMap = ({ draggable, onDrag, markers, onClickMarker }) => {
   return (
     <>
       <APIProvider apiKey="AIzaSyCln3IuGBs0Z6zmbGIM0nttcS1cZcTzHqE">
@@ -41,7 +41,7 @@ const MosqMap = ({ draggable, onDrag, markers }) => {
                 position={marker.position}
                 clickable={true}
                 onClick={() => {
-                  console.log("Clicked on marker", marker);
+                  return typeof onClickMarker === 'function' ? onClickMarker(marker) : null;
                 }}
                 onDragEnd={(e) => {
                   const lat = e.latLng.lat();

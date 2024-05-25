@@ -1,21 +1,31 @@
-import useModal from '../hooks/useModal'
+import { useNavigate } from "react-router-dom";
+import { viewMetaData } from "../routes";
 
-const ListCard = ({ name, handleEdit }) => {
-  const { toggle } = useModal();
+const ListCard = ({ handleEdit, mark, onClickImport, onClickVisualize }) => {
+  const { name } = mark;
+  const navigate = useNavigate();
   return (
     <div className="p-4 border rounded flex justify-between mb-3 hover:shadow-lg transition-all ">
-      <div>{name}</div>
-      <div className="actions">
-        <a
+      <div className="flex items-center">{name}</div>
+      <div className="actions flex">
+        <button
           href="#"
           onClick={handleEdit}
-          className="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-4"
+          className="btn-primary mr-4"
         >
           Editar
-        </a>
+        </button>
         <button
-          className="font-medium text-blue-600 dark:text-blue-500 hover:underline block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          onClick={() => toggle()}
+          className="btn-primary mr-4"
+          onClick={() => navigate(viewMetaData.replace(":id", mark.id))}
+        >
+          Visualizar dados
+        </button>
+        <button
+          className="btn-primary"
+          onClick={() => {
+            typeof onClickImport === "function" && onClickImport(mark);
+          }}
         >
           Importar dados
         </button>

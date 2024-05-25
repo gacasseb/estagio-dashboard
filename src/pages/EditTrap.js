@@ -1,7 +1,6 @@
 import Container from "../components/Container";
 import SideBar from "../components/SideBar";
 import TrapForm from "../components/TrapForm";
-import Map from "../components/Map";
 
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -15,7 +14,6 @@ const EditTrap = () => {
   useEffect(() => {
     async function fetchTrap() {
       const trap = await getTrap(id);
-      console.log('trap', trap, id)
       setTrap(trap);
     }
     fetchTrap();
@@ -30,9 +28,6 @@ const EditTrap = () => {
       <SideBar />
       <Container>
         <TrapForm trap={trap}></TrapForm>
-        {/* <div className="h-[40%] my-[50px]">
-          <Map></Map>
-        </div> */}
       </Container>
     </>
   );
