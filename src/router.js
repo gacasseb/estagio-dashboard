@@ -1,14 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { editTrap, createTrap, viewMetaData } from "./routes";
+import { editTrap, createTrap, viewMetaData, login } from "./routes";
 
 import App from "./App";
 import Armadilhas from "./pages/Armadilhas";
 import EditTrap from "./pages/EditTrap";
 import CreateTrap from "./pages/CreateTrap";
 import ViewMetaData from "./pages/ViewMetaData";
+import Login from "./pages/Login";
 
-const router = createBrowserRouter([
+const routes = [
   {
     path: "/",
     element: <App />,
@@ -28,7 +29,17 @@ const router = createBrowserRouter([
   {
     path: viewMetaData,
     element: <ViewMetaData />,
+  },
+  {
+    path: login,
+    element: <Login />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   }
-]);
+];
+
+const router = createBrowserRouter(routes);
 
 export default router;

@@ -5,11 +5,16 @@ import Modal2 from "./components/Modal2";
 
 import { useEffect, useState } from "react";
 import { getTraps } from "./api/getTrap";
+import { isAuthenticated } from "./utils";
+import { useNavigate } from "react-router-dom";
+import { login } from "./routes";
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [marker, setMarker] = useState(null);
   const [traps, setTraps] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -21,7 +26,6 @@ export default function App() {
           lng: trap.longitude
         }
       }))
-      console.log('traps', traps);
       setTraps(traps);
     }
     fetchData();
@@ -31,6 +35,11 @@ export default function App() {
     setMarker(marker)
     setIsOpen(true)
   }
+
+  if (!isAuthenticated()) {
+    return navigate(login);
+  }
+
   return (
     <>
       <SideBar />

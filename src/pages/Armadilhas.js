@@ -1,7 +1,16 @@
 import SideBar from "../components/SideBar";
 import TrapList from "../components/TrapList";
 
+import { isAuthenticated } from "../utils";
+import { useNavigate } from "react-router-dom";
+import { login } from "../routes";
+
 const Armadilhas = () => {
+  const navigate = useNavigate();
+  if (!isAuthenticated()) {
+    return navigate(login);
+  }
+  
   return (
     <>
       <SideBar />

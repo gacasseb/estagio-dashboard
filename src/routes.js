@@ -1,8 +1,10 @@
 const API_URL = 'http://localhost:3010';
 
+export const home = "/";
 export const editTrap = '/armadilha/editar/:id';
 export const createTrap = '/armadilha/cadastrar';
 export const viewMetaData = '/armadilha/metadata/:id';
+export const login = '/login';
 
 export const listTraps = API_URL + '/trap';
 export const getTrap = API_URL + '/trap/:id'

@@ -34,15 +34,14 @@ export const MetaDataList = ({ metadatas }) => {
   const getList = () =>
     metadatas.map((metadata, index) => {
       return (
-        <Accordion open={open === index} icon={<Icon id={index} open={open} />}>
+        <Accordion key={index} open={open === index} icon={<Icon id={index} open={open} />}>
           <AccordionHeader onClick={() => handleOpen(index)}>
             {metadata.id}
           </AccordionHeader>
           <AccordionBody>
-            We&apos;re not always in the position that we want to be at.
-            We&apos;re constantly growing. We&apos;re constantly making
-            mistakes. We&apos;re constantly trying to express ourselves and
-            actualize our dreams.
+            <pre>
+              {JSON.stringify(metadata.metadata, null, 2)}
+            </pre>
           </AccordionBody>
         </Accordion>
       );
